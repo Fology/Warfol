@@ -1,0 +1,119 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=1]
+[ext_resource path="res://Texture/Icons/next.png" type="Texture" id=2]
+[ext_resource path="res://Texture/Icons/nextd.png" type="Texture" id=3]
+[ext_resource path="res://Texture/Background/Hills Free (update 3.0).png" type="Texture" id=4]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-idle-2-03.png" type="Texture" id=5]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-idle-2-02.png" type="Texture" id=6]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-idle-2-01.png" type="Texture" id=7]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-idle-2-00.png" type="Texture" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 71, 555, 0, 0, 0, 0, 533, 559, 0, 0, 0, 0, 1011, 558, 0, 0, 0, 0, 1987, 563 )
+}
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "Attack1",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "Attack2",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "Attack3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "Rum",
+"speed": 5.0
+} ]
+
+[sub_resource type="SegmentShape2D" id=5]
+b = Vector2( 35, 0 )
+
+[node name="Main" type="Node2D"]
+
+[node name="Cenário" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Cenário"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Cenário/ParallaxBackground"]
+motion_mirroring = Vector2( 1024, 0 )
+
+[node name="Sprite" type="Sprite" parent="Cenário/ParallaxBackground/ParallaxLayer"]
+position = Vector2( 512, 300 )
+scale = Vector2( 2, 2.34375 )
+texture = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+script = ExtResource( 1 )
+
+[node name="Buttone" type="Button" parent="Camera2D"]
+margin_top = 160.0
+margin_right = 60.0
+margin_bottom = 400.0
+custom_styles/focus = SubResource( 1 )
+icon = ExtResource( 2 )
+flat = true
+clip_text = true
+icon_align = 1
+expand_icon = true
+
+[node name="Buttond" type="Button" parent="Camera2D"]
+margin_left = 965.0
+margin_top = 160.0
+margin_right = 1024.0
+margin_bottom = 400.0
+focus_mode = 1
+custom_styles/focus = SubResource( 2 )
+enabled_focus_mode = 1
+icon = ExtResource( 3 )
+flat = true
+clip_text = true
+icon_align = 1
+expand_icon = true
+
+[node name="PathPlayer" type="Path2D" parent="."]
+curve = SubResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PathPlayer"]
+position = Vector2( 71, 555 )
+rotation = 0.00864493
+scale = Vector2( 4, 4 )
+
+[node name="Player_Mob_Hero" type="Area2D" parent="PathPlayer/PathFollow2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="PathPlayer/PathFollow2D/Player_Mob_Hero"]
+position = Vector2( 0, -18 )
+frames = SubResource( 4 )
+animation = "Idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathPlayer/PathFollow2D/Player_Mob_Hero"]
+position = Vector2( 1.90735e-06, -15 )
+shape = SubResource( 5 )
+
+[connection signal="mouse_entered" from="Camera2D/Buttone" to="Camera2D" method="_on_Buttone_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/Buttone" to="Camera2D" method="_on_Buttone_mouse_exited"]
+[connection signal="mouse_entered" from="Camera2D/Buttond" to="Camera2D" method="_on_Buttond_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/Buttond" to="Camera2D" method="_on_Buttond_mouse_exited"]
