@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://Texture/Icons/next.png" type="Texture" id=2]
@@ -8,6 +8,33 @@
 [ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-idle-2-02.png" type="Texture" id=6]
 [ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-idle-2-01.png" type="Texture" id=7]
 [ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-idle-2-00.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/Player_Mob_Hero.gd" type="Script" id=9]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack1-01.png" type="Texture" id=10]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-run-01.png" type="Texture" id=11]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack1-02.png" type="Texture" id=12]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack2-00.png" type="Texture" id=13]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack1-03.png" type="Texture" id=14]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack2-01.png" type="Texture" id=15]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack2-03.png" type="Texture" id=16]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack2-02.png" type="Texture" id=17]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-run-02.png" type="Texture" id=18]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-run-05.png" type="Texture" id=19]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack1-04.png" type="Texture" id=20]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack2-04.png" type="Texture" id=21]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack2-05.png" type="Texture" id=22]
+[ext_resource path="res://Texture/Life Bar/greenbar (1).png" type="Texture" id=23]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-run-04.png" type="Texture" id=24]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack1-00.png" type="Texture" id=25]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-run-03.png" type="Texture" id=26]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack3-02.png" type="Texture" id=27]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack3-05.png" type="Texture" id=28]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack3-04.png" type="Texture" id=29]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack3-01.png" type="Texture" id=30]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack3-03.png" type="Texture" id=31]
+[ext_resource path="res://Texture/Enemy Mobs/Untitled-1.png" type="Texture" id=32]
+[ext_resource path="res://Texture/Life Bar/greenbar (3).png" type="Texture" id=33]
+[ext_resource path="res://Scripts/Base_enemy.gd" type="Script" id=34]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack3-00.png" type="Texture" id=35]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -20,17 +47,17 @@ _data = {
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [  ],
+"frames": [ ExtResource( 25 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 20 ) ],
 "loop": true,
-"name": "Attack1",
-"speed": 5.0
+"name": "Attack",
+"speed": 10.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 21 ), ExtResource( 22 ) ],
 "loop": true,
 "name": "Attack2",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 35 ), ExtResource( 30 ), ExtResource( 27 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 28 ) ],
 "loop": true,
 "name": "Attack3",
 "speed": 5.0
@@ -40,14 +67,17 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 11 ), ExtResource( 18 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "Rum",
 "speed": 5.0
 } ]
 
 [sub_resource type="SegmentShape2D" id=5]
-b = Vector2( 35, 0 )
+b = Vector2( 21, 0 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 121.667, 125 )
 
 [node name="Main" type="Node2D"]
 
@@ -93,27 +123,70 @@ clip_text = true
 icon_align = 1
 expand_icon = true
 
-[node name="PathPlayer" type="Path2D" parent="."]
+[node name="Player_MobWay" type="Path2D" parent="."]
 curve = SubResource( 3 )
+script = ExtResource( 9 )
+velocity = 400
 
-[node name="PathFollow2D" type="PathFollow2D" parent="PathPlayer"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Player_MobWay"]
 position = Vector2( 71, 555 )
 rotation = 0.00864493
-scale = Vector2( 4, 4 )
+loop = false
 
-[node name="Player_Mob_Hero" type="Area2D" parent="PathPlayer/PathFollow2D"]
+[node name="Player_Mob_1" type="Area2D" parent="Player_MobWay/PathFollow2D" groups=["player_mob"]]
+position = Vector2( 0, 10 )
+scale = Vector2( 3.5, 3.5 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="PathPlayer/PathFollow2D/Player_Mob_Hero"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player_MobWay/PathFollow2D/Player_Mob_1"]
 position = Vector2( 0, -18 )
 frames = SubResource( 4 )
-animation = "Idle"
-playing = true
+animation = "Attack3"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathPlayer/PathFollow2D/Player_Mob_Hero"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_MobWay/PathFollow2D/Player_Mob_1"]
 position = Vector2( 1.90735e-06, -15 )
 shape = SubResource( 5 )
+
+[node name="TextureProgress" type="TextureProgress" parent="Player_MobWay/PathFollow2D/Player_Mob_1"]
+modulate = Color( 1, 1, 1, 0.701961 )
+margin_left = -10.8303
+margin_top = -40.6578
+margin_right = 134.17
+margin_bottom = 104.342
+rect_scale = Vector2( 0.25, 0.25 )
+max_value = 20.0
+value = 20.0
+texture_under = ExtResource( 23 )
+texture_progress = ExtResource( 23 )
+tint_under = Color( 1, 0, 0, 1 )
+
+[node name="Base_enemy" type="StaticBody2D" parent="." groups=["enemy_mob"]]
+position = Vector2( 404, 471 )
+scale = Vector2( 0.3, 0.3 )
+script = ExtResource( 34 )
+
+[node name="Sprite" type="Sprite" parent="Base_enemy"]
+texture = ExtResource( 32 )
+
+[node name="TextureProgress" type="TextureProgress" parent="Base_enemy"]
+modulate = Color( 1, 1, 1, 0.701961 )
+margin_left = -80.0
+margin_top = -600.0
+margin_right = 65.0
+margin_bottom = -455.0
+rect_scale = Vector2( 4, 4 )
+value = 100.0
+texture_under = ExtResource( 33 )
+texture_progress = ExtResource( 23 )
+texture_progress_offset = Vector2( 0, 30 )
+tint_under = Color( 1, 0, 0, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Base_enemy"]
+position = Vector2( 181.667, 165 )
+shape = SubResource( 6 )
 
 [connection signal="mouse_entered" from="Camera2D/Buttone" to="Camera2D" method="_on_Buttone_mouse_entered"]
 [connection signal="mouse_exited" from="Camera2D/Buttone" to="Camera2D" method="_on_Buttone_mouse_exited"]
 [connection signal="mouse_entered" from="Camera2D/Buttond" to="Camera2D" method="_on_Buttond_mouse_entered"]
 [connection signal="mouse_exited" from="Camera2D/Buttond" to="Camera2D" method="_on_Buttond_mouse_exited"]
+[connection signal="body_entered" from="Player_MobWay/PathFollow2D/Player_Mob_1" to="Player_MobWay" method="_on_Player_Mob_Hero_body_entered"]
+[connection signal="body_exited" from="Player_MobWay/PathFollow2D/Player_Mob_1" to="Player_MobWay" method="_on_Player_Mob_Hero_body_exited"]
