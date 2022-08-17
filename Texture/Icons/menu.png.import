@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nextd.png-eb49b5a151ee0a294e4978bfa5b2d710.stex"
+path="res://.import/menu.png-0c14af12ab61be19d8ed6254b30ecf2e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texture/Icons/nextd.png"
-dest_files=[ "res://.import/nextd.png-eb49b5a151ee0a294e4978bfa5b2d710.stex" ]
+source_file="res://Texture/Icons/menu.png"
+dest_files=[ "res://.import/menu.png-0c14af12ab61be19d8ed6254b30ecf2e.stex" ]
 
 [params]
 

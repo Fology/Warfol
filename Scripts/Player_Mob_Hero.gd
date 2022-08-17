@@ -63,22 +63,24 @@ func attack_state():
 	_combo_attack()
 	current_state = _check_attack_state()
 	yield(get_node("PathFollow2D/Player_Mob_1/AnimatedSprite"), "animation_finished")
-	
+
 #Helpers
 func _move(_delta):
 	$PathFollow2D.offset += velocity * _delta
 	
 func _combo_attack():
 	$PathFollow2D/Player_Mob_1/AnimatedSprite.play("Attack")
-	
-func _on_Player_Mob_Hero_body_entered(body):
-	if body.is_in_group('player_mob'):
+
+func _on_Player_Mob_1_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	if area.is_in_group('player_mob'):
 		can_run = false
+		print('player')
 		
-	if body.is_in_group('enemy_mob'):
+	if area.is_in_group('enemy_mob'):
 		can_attack = true
 		can_run = false
 	
-func _on_Player_Mob_Hero_body_exited(_body):
+
+func _on_Player_Mob_1_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	can_run = true
 	can_attack = false
