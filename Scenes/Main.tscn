@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://Texture/Icons/next.png" type="Texture" id=2]
@@ -6,10 +6,16 @@
 [ext_resource path="res://Texture/Background/Hills Free (update 3.0).png" type="Texture" id=4]
 [ext_resource path="res://Texture/Icons/menu.png" type="Texture" id=5]
 [ext_resource path="res://Texture/Font Style/LoveGlitchPersonalUseRegular-vmEyA.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Texture/Icons/shield.png" type="Texture" id=7]
+[ext_resource path="res://Texture/Icons/sword.png" type="Texture" id=8]
+[ext_resource path="res://Texture/Icons/shoter.png" type="Texture" id=9]
+[ext_resource path="res://Texture/Icons/special.png" type="Texture" id=10]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=7]
 
 [sub_resource type="DynamicFont" id=3]
 size = 40
@@ -76,6 +82,57 @@ margin_bottom = 528.0
 rect_scale = Vector2( 0.1, 0.1 )
 icon = ExtResource( 5 )
 flat = true
+
+[node name="Button_mele" type="Button" parent="Camera2D"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 539.0
+margin_bottom = 533.0
+rect_scale = Vector2( 0.1, 0.1 )
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 8 )
+flat = true
+icon_align = 1
+
+[node name="Button_shoter" type="Button" parent="Camera2D"]
+margin_left = 90.0
+margin_top = 15.0
+margin_right = 614.0
+margin_bottom = 533.0
+rect_scale = Vector2( 0.1, 0.1 )
+focus_mode = 0
+custom_styles/pressed = SubResource( 7 )
+enabled_focus_mode = 0
+icon = ExtResource( 9 )
+flat = true
+icon_align = 1
+
+[node name="Button_tank" type="Button" parent="Camera2D"]
+margin_left = 155.0
+margin_top = 15.0
+margin_right = 679.0
+margin_bottom = 533.0
+rect_scale = Vector2( 0.1, 0.1 )
+focus_mode = 0
+custom_styles/pressed = SubResource( 7 )
+enabled_focus_mode = 0
+icon = ExtResource( 7 )
+flat = true
+icon_align = 1
+
+[node name="Button_special" type="Button" parent="Camera2D"]
+margin_left = 220.0
+margin_top = 15.0
+margin_right = 744.0
+margin_bottom = 533.0
+rect_scale = Vector2( 0.1, 0.1 )
+focus_mode = 0
+custom_styles/pressed = SubResource( 7 )
+enabled_focus_mode = 0
+icon = ExtResource( 10 )
+flat = true
+icon_align = 1
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D"]
 pause_mode = 2
