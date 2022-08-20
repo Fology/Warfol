@@ -1,0 +1,173 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-idle-2-01.png" type="Texture" id=1]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-idle-2-03.png" type="Texture" id=2]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-idle-2-00.png" type="Texture" id=3]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-idle-2-02.png" type="Texture" id=4]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack1-02.png" type="Texture" id=5]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack1-01.png" type="Texture" id=6]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack1-03.png" type="Texture" id=7]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack1-04.png" type="Texture" id=8]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-attack1-00.png" type="Texture" id=9]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-run-00.png" type="Texture" id=11]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-run-02.png" type="Texture" id=12]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-run-03.png" type="Texture" id=13]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-run-04.png" type="Texture" id=14]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-run-01.png" type="Texture" id=15]
+[ext_resource path="res://Texture/Player Mobs/Individual Sprites/adventurer-run-05.png" type="Texture" id=16]
+[ext_resource path="res://Scripts/Mob_player_script.gd" type="Script" id=17]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "Attack",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "Run",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Attack"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Attack" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Sword_HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.75
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.375, 0.625 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Idle" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Sword_HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Run"
+length = 1.2
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("AnimatedSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Run" ]
+}
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 18.0
+
+[node name="Mob_player" type="Node2D"]
+script = ExtResource( 17 )
+
+[node name="Player_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player_area"]
+frames = SubResource( 1 )
+animation = "Idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player_area"]
+anims/Attack = SubResource( 3 )
+anims/RESET = SubResource( 5 )
+anims/Run = SubResource( 6 )
+
+[node name="Sword_HitBox" type="Area2D" parent="." groups=["sword_hitbox"]]
+position = Vector2( 8, -2 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword_HitBox"]
+shape = SubResource( 7 )
+disabled = true
